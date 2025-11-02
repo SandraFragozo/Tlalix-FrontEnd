@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CodaContainer = styled.div`
-  /* Espaciado para separarlo del Xolo y del Footer */
   padding: 3rem 2rem 0rem 2rem;
   text-align: center;
   
