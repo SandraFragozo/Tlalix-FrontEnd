@@ -1,0 +1,78 @@
+/* src/index.css */
+
+/* --- 1. IMPORTACIÓN DE FUENTES DE GOOGLE --- */
+/* Combina todas las fuentes en una sola llamada para mejor rendimiento */
+@import url('https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Cinzel:wght@400;700&family=Forum&display=swap');
+
+/* --- 2. DEFINICIÓN DE VARIABLES GLOBALES (:root) --- */
+:root {
+  /* -- Fuentes -- */
+  /*
+    'Cinzel' (para títulos) -> Carga regular (400) y negrita (700)
+    'Forum' (para subtítulos) -> Solo tiene peso regular (400)
+    'Caudex' (para texto) -> Carga regular (400) y negrita (700)
+  */
+  --fuente-titulos: 'Cinzel', serif;
+  --fuente-subtitulos: 'Forum', serif;
+  --fuente-texto: 'Caudex', serif;
+
+  /* -- Paleta de Colores -- */
+  --color-azul-marino: #131841;
+  --color-azul-mar: #0f3d45;
+  --color-celeste: #0e96ae;
+  --color-verde-opaco: #53784e;
+  --color-rojizo: #c62311;
+  --color-rosa-mexicano: #d50dd3;
+  --color-amarillo-opaco: #eda543;
+
+  /* -- Colores base neutros (útil tenerlos) -- */
+  --color-blanco: #ffffff;
+  --color-gris-claro: #f4f4f4;
+  --color-negro: #1a1a1a;
+}
+
+/* --- 3. ESTILOS GLOBALES BASE (body, h1, etc.) --- */
+/*
+  Aquí usamos las variables para definir los estilos
+  por defecto de toda tu aplicación.
+*/
+body {
+  margin: 0;
+  padding: 0;
+
+  /* Establece la fuente y color de texto por defecto */
+  font-family: var(--fuente-texto);
+  color: var(--color-azul-marino);
+  background-color: var(--color-gris-claro);
+  /* Fondo base de la app */
+
+  /* Suavizado de fuentes */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilos para Títulos */
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  color: var(--color-azul-mar);
+  font-weight: 700;
+  /* Usa la versión negrita de Cinzel */
+}
+
+/* Estilos para Subtítulos */
+h4,
+h5,
+h6 {
+  font-family: var(--fuente-subtitulos);
+  color: var(--color-celeste);
+  font-weight: 400;
+  /* Forum solo tiene peso 400 */
+}
+
+/* Asegura que las etiquetas <strong> usen la versión negrita de Caudex */
+strong,
+b {
+  font-weight: 700;
+}
