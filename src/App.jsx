@@ -6,6 +6,8 @@ import PatternDivider from '@/components/PatternDivider';
 import Home from './views/Home';
 import Enviar from '@/views/Enviar';
 import Historial from '@/views/Historial';
+import Empresas from '@/views/Empresas';
+import ComoFunciona from '@/views/ComoFunciona';
 // ... (otras importaciones de vistas si las tienes)
 
 const AppContainer = styled.div`
@@ -80,6 +82,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/enviar" element={<Enviar />} />
             <Route path="/historial" element={<Historial />} />
+
+            <Route path="/empresas" element={<Empresas />} />
+            <Route path="/como-funciona" element={<ComoFunciona />} />
             {/* ... (tus otras rutas) ... */}
           </Routes>
         </ContentWrapper>
