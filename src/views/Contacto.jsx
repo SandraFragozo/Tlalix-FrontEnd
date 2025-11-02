@@ -9,7 +9,7 @@ const PageContainer = styled.div`
   margin-top: 2rem;
   width: 100%;
   align-items: center;
-  flex-grow: 1;
+  flex-grow: 1; /* Para empujar el footer hacia abajo */
 `;
 
 const Title = styled.h1`
@@ -21,21 +21,47 @@ const Title = styled.h1`
   text-align: center;
 `;
 
+// Estilos de contenido para texto de contacto
 const Content = styled.div`
   background-color: var(--color-azul-mar);
   border: 1px solid var(--color-celeste);
   border-radius: 12px;
-  padding: 2.5rem;
+  padding: 2.5rem 3rem;
   width: 100%;
   max-width: 800px;
+  text-align: center; /* Centramos el texto */
   
-  p {
-    font-family: var(--fuente-texto);
+  p, li {
+    font-family: var(--fuente-texto); /* Caudex */
     color: var(--color-blanco);
     opacity: 0.85;
     line-height: 1.7;
     font-size: 1.1rem;
-    text-align: center;
+  }
+
+  h3 {
+    font-family: var(--fuente-subtitulos); /* Forum */
+    color: var(--color-celeste);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  a {
+    color: var(--color-amarillo-opaco);
+    font-weight: 700;
+    text-decoration: none;
+    word-break: break-all; /* Para que los emails no se desborden */
+  }
+
+  /* Placeholder/aviso */
+  small {
+    display: block;
+    margin-top: 1rem;
+    opacity: 0.6;
+    font-family: var(--fuente-texto);
+    color: var(--color-blanco);
   }
 `;
 
@@ -45,11 +71,20 @@ function Contacto() {
       <PageContainer>
         <Title>Contacto</Title>
         <Content>
+          <h3>Contacto Legal</h3>
           <p>
-            Para soporte o preguntas, por favor contáctanos en:
-            <br />
-            <strong>soporte@tlalix.demo</strong>
+            <a href="mailto:legal@tlalix.io">legal@tlalix.io</a>
           </p>
+          
+          <h3>Soporte</h3>
+          <p>
+            <a href="mailto:soporte@tlalix.io">soporte@tlalix.io</a>
+          </p>
+          <p>
+            WhatsApp: +52 229 136 8449
+          </p>
+          
+          <small></small>
         </Content>
       </PageContainer>
       <Footer />
