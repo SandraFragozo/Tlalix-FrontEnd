@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-// 1. Importa los componentes de los pasos
+// 1. Importa todos los componentes del flujo
 import Stepper from '@/components/send/Stepper';
 import Step1_Monto from '@/components/send/Step1_Monto';
-import Footer from '@/components/Footer'; // <-- 2. IMPORTA EL FOOTER
+import Step2_Destinatario from '@/components/send/Step2_Destinatario';
+import Step3_Confirmacion from '@/components/send/Step3_Confirmacion';
+import Step4_Resultado from '@/components/send/Step4_Resultado';
+import Footer from '@/components/Footer';
+
+// --- Styled Components (Contenedores) ---
 
 const EnviarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  
+  /* El margen para que no se oculte detrás del Navbar */
   margin-top: 2rem; 
 `;
 
@@ -33,50 +40,62 @@ const StepCard = styled.div`
   box-shadow: 0 8px 20px rgba(14, 150, 174, 0.1);
 `;
 
-// --- El Componente ---
+// --- El Componente Principal "Enviar" ---
 
 function Enviar() {
+  // Estado para saber en qué paso estamos
   const [step, setStep] = useState(1);
 
+  // (En una app real, aquí también guardaríamos el monto y el destinatario)
+  
+  // Función para reiniciar el flujo (para el botón de Step 4)
+  const handleReset = () => {
+    setStep(1);
+    // Aquí también limpiaríamos los datos del formulario
+  };
+
   return (
-    // 3. Usa un Fragment (<>) para agrupar la vista y el footer
+    // Usamos un Fragment (<>) para agrupar la vista y el footer
     <>
       <EnviarContainer>
         <Title>Enviar remesa</Title>
         <StepCard>
           
+          {/* El componente de los 4 círculos */}
           <Stepper currentStep={step} />
 
+          {/* --- 2. Renderizado Condicional de TODOS los pasos --- */}
+          
           {step === 1 && (
             <Step1_Monto 
               onContinue={() => setStep(2)} 
             />
           )}
           
-          {/* (Placeholders para los otros pasos) */}
           {step === 2 && (
-            <div>
-              <h2 style={{color: 'white', fontFamily: 'var(--fuente-titulos)'}}>Paso 2: Destinatario</h2>
-              <button onClick={() => setStep(1)}>Atrás</button>
-              <button onClick={() => setStep(3)}>Continuar</button>
-            </div>
+            <Step2_Destinatario 
+              onBack={() => setStep(1)}
+              onContinue={() => setStep(3)}
+            />
           )}
+          
           {step === 3 && (
-            <div>
-              <h2 style={{color: 'white', fontFamily: 'var(--fuente-titulos)'}}>Paso 3: Confirmación</h2>
-              <button onClick={() => setStep(2)}>Atrás</button>
-              <button onClick={() => setStep(4)}>Confirmar</button>
-            </div>
+            <Step3_Confirmacion 
+              onBack={() => setStep(2)}
+              onConfirm={() => setStep(4)}
+            />
           )}
+          
           {step === 4 && (
-            <div>
-              <h2 style={{color: 'white', fontFamily: 'var(--fuente-titulos)'}}>Paso 4: Resultado</h2>
-            </div>
+            <Step4_Resultado 
+              onReset={handleReset}
+            />
           )}
+          
         </StepCard>
       </EnviarContainer>
 
-      <Footer /> {/* <-- 4. AÑADE EL FOOTER AL FINAL */}
+      <Footer />
     </>
   );
 }
