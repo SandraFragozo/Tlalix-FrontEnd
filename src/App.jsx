@@ -4,12 +4,20 @@ import styled from 'styled-components';
 // --- Imports (usando '@/' para consistencia) ---
 import { Navbar } from '@/components/Navbar';
 import PatternDivider from '@/components/PatternDivider';
+
+// Vistas Principales
 import Home from '@/views/Home';
 import Enviar from '@/views/Enviar';
 import Historial from '@/views/Historial';
 import PuntosDeRetiro from '@/views/PuntosDeRetiro';
 import Empresas from '@/views/Empresas';
 import ComoFunciona from '@/views/ComoFunciona';
+
+// Vistas del Footer (¡NUEVAS!)
+import Privacidad from '@/views/Privacidad';
+import Terminos from '@/views/Terminos';
+import Contacto from '@/views/Contacto';
+
 
 // ... (El resto de tus styled components: AppContainer, MainLayout, etc.)
 const AppContainer = styled.div`
@@ -18,7 +26,6 @@ const AppContainer = styled.div`
   min-height: 100vh;
   background-color: var(--color-azul-marino); 
 `;
-
 const MainLayout = styled.div`
   flex-grow: 1;
   display: flex;
@@ -26,7 +33,6 @@ const MainLayout = styled.div`
   position: relative;
   overflow: hidden;
 `;
-
 const ContentWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
@@ -35,7 +41,6 @@ const ContentWrapper = styled.div`
   padding: 0;
   z-index: 10;
 `;
-
 const LeftPattern = styled.div`
   position: absolute;
   top: 0;
@@ -48,7 +53,6 @@ const LeftPattern = styled.div`
   z-index: 5;
   opacity: 0.6;
 `;
-
 const RightPattern = styled.div`
   position: absolute;
   top: 0;
@@ -73,21 +77,18 @@ function App() {
         <LeftPattern />
         <ContentWrapper>
           <Routes>
+            {/* Vistas del Navbar */}
             <Route path="/" element={<Home />} />
             <Route path="/enviar" element={<Enviar />} />
             <Route path="/historial" element={<Historial />} />
-            
-            {/* --- ¡CAMBIO AQUÍ! --- */}
             <Route path="/retiro" element={<PuntosDeRetiro />} /> 
-            {/* (Antes decía "/puntos-de-retiro") */}
-
             <Route path="/empresas" element={<Empresas />} />
             <Route path="/como-funciona" element={<ComoFunciona />} />
             
-            {/* Rutas de placeholder */}
-            <Route path="/privacidad" element={<h2>Página de Privacidad</h2>} />
-            <Route path="/terminos" element={<h2>Página de Términos</h2>} />
-            <Route path="/contacto" element={<h2>Página de Contacto</h2>} />
+            {/* --- ¡RUTAS DEL FOOTER ACTUALIZADAS! --- */}
+            <Route path="/privacidad" element={<Privacidad />} />
+            <Route path="/terminos" element={<Terminos />} />
+            <Route path="/contacto" element={<Contacto />} />
           </Routes>
         </ContentWrapper>
         <RightPattern />

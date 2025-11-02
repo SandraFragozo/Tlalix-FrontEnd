@@ -110,7 +110,7 @@ function Footer() {
         </FooterLinks>
 
         <Copyright>
-          © 2025 Tlalix. Demo educativo.
+          © Tlalix. Todos los derechos reservados.
         </Copyright>
       </FooterContent>
     </FooterContainer>

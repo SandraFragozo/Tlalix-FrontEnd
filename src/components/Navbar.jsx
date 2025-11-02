@@ -1,16 +1,15 @@
 import { NavLink } from "react-router-dom";
-import { Moon, Sun, Globe } from "lucide-react";
+import { Globe } from "lucide-react"; // Ya no importamos Moon y Sun
 import styled from "styled-components";
 // ... (Tus otras importaciones de Contexts, WalletButton, t)
 
 // --- Definición de Styled Components ---
 
 const NavContainer = styled.nav`
-  /* ... (Tus estilos de NavContainer) ... */
   background-color: var(--color-azul-mar); 
   border-bottom: 1px solid var(--color-celeste);
   padding: 0 2rem;
-  height: 4.5rem; // 72px
+  height: 4.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,39 +18,29 @@ const NavContainer = styled.nav`
   z-index: 50;
 `;
 
-// 2. El Logo (¡MODIFICADO OTRA VEZ!)
 const LogoLink = styled(NavLink)`
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* <-- AÑADIDO: Espacio entre logo y texto */
+  gap: 0.75rem;
   text-decoration: none;
   
-  /* Estilos para la imagen del logo */
   img {
-    height: 2.5rem; /* 40px. Ajusta esta altura */
+    height: 2.5rem;
     width: auto;
     transition: opacity 0.2s ease;
   }
-
-  /* --- AÑADIDO: Estilos para el texto --- */
   span {
-    font-family: var(--fuente-titulos); /* ¡Cinzel! */
+    font-family: var(--fuente-titulos);
     font-size: 1.75rem; 
     font-weight: 700;
     color: var(--color-blanco);
     transition: color 0.2s ease;
   }
 
-  /* Efecto hover */
-  &:hover img {
-    opacity: 0.85;
-  }
-  &:hover span {
-    color: var(--color-celeste);
-  }
+  &:hover img { opacity: 0.85; }
+  &:hover span { color: var(--color-celeste); }
 `;
 
-// ... (El resto de tus styled components: NavMenu, StyledNavLink, Controls, IconButton...)
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
@@ -60,6 +49,7 @@ const NavMenu = styled.div`
     display: none;
   }
 `;
+
 const StyledNavLink = styled(NavLink)`
   font-family: var(--fuente-subtitulos);
   font-size: 1rem;
@@ -79,11 +69,13 @@ const StyledNavLink = styled(NavLink)`
     color: var(--color-blanco);
   }
 `;
+
 const Controls = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
 `;
+
 const IconButton = styled.button`
   background: transparent;
   border: none;
@@ -104,32 +96,30 @@ const IconButton = styled.button`
 // --- Tu Componente Navbar (Versión Simplificada Temporal) ---
 
 export const Navbar = () => {
-  // ... (Tu lógica de theme, lang, etc.)
-  const theme = "light";
+  // ELIMINADO: const theme = "light";
 
   const navLinks = [
     { path: "/", label: "Inicio" },
     { path: "/enviar", label: "Enviar" },
     { path: "/historial", label: "Historial" },
-    { path: "/retiro", label: "Puntos de Retiro" },
+    { path: "/retiro", label: "Puntos de Retiro" }, // (Asegúrate que tu ruta en App.jsx coincida)
     { path: "/empresas", label: "Empresas" },
     { path: "/como-funciona", label: "Cómo funciona" },
   ];
 
   return (
     <NavContainer>
-      {/* --- ¡CAMBIO AQUÍ! --- */}
       <LogoLink to="/">
         <img src="/images/logo.png" alt="Tlalix Logo" />
-        <span>Tlalix</span> {/* <-- Texto añadido de vuelta */}
+        <span>Tlalix</span>
       </LogoLink>
-      {/* --------------------- */}
 
       <NavMenu>
         {navLinks.map((link) => (
           <StyledNavLink
             key={link.path}
             to={link.path}
+            // 'end' es importante para que "Inicio" no esté siempre activo
             end={link.path === "/"} 
           >
             {link.label}
@@ -151,13 +141,14 @@ export const Navbar = () => {
           Conectar Wallet
         </button>
 
+        {/* Botón de Idioma (se queda) */}
         <IconButton title="Toggle language">
           <Globe className="h-5 w-5" />
         </IconButton>
 
-        <IconButton title="Toggle theme">
-          {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-        </IconButton>
+        {/* --- ELIMINADO --- */}
+        {/* Ya no está el botón de Tema (luna/sol) */}
+        
       </Controls>
     </NavContainer>
   );
