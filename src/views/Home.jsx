@@ -6,6 +6,7 @@ import HeroSection from '@/components/HeroSection';
 import WhyTlalix from '@/components/WhyTlalix';
 import CTASection from '@/components/CTASection';
 import XoloitzcuintleFooter from '@/components/XoloitzcuintleFooter';
+import MictlanCoda from '@/components/MictlanCoda';
 import Footer from '@/components/Footer';
 
 // Contenedor para la página de Home
@@ -28,6 +29,8 @@ function Home() {
       <CTASection />
 
       <XoloitzcuintleFooter />
+
+      <MictlanCoda />
 
       <Footer />
 
