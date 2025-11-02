@@ -1,24 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
+
+// 1. Importa todos los componentes de tu página
 import HeroSection from '@/components/HeroSection';
-import XoloitzcuintleFooter from '@/components/XoloitzcuintleFooter'; // AÑADIDO: Importa el Xolo
+import WhyTlalix from '@/components/WhyTlalix';
+import CTASection from '@/components/CTASection'; // <-- ¡El nuevo!
+import XoloitzcuintleFooter from '@/components/XoloitzcuintleFooter';
 
 const HomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem; 
-  padding-top: 2rem; 
-  padding-bottom: 2rem;
 `;
 
 function Home() {
   return (
     <HomePageContainer>
-      <HeroSection />
-      {/* ... otras secciones de tu Home ... */}
+      {/* 2. Este es el orden final de tu Home */}
 
-      {/* AÑADIDO: Tu componente del Xoloitzcuintle al final */}
-      <XoloitzcuintleFooter /> 
+      <HeroSection />
+
+      <WhyTlalix />
+
+      <CTASection /> {/* <-- ¡Añadido aquí! */}
+
+      <XoloitzcuintleFooter />
+
     </HomePageContainer>
   );
 }

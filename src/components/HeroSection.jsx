@@ -5,6 +5,7 @@ import styled from 'styled-components';
 // (Movimos todo esto desde Home.jsx)
 
 const HeroContainer = styled.div`
+margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;

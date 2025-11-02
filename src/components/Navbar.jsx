@@ -1,19 +1,16 @@
 import { NavLink } from "react-router-dom";
-import { Moon, Sun, Globe } from "lucide-react"; // Esto ya funcionará
+import { Moon, Sun, Globe } from "lucide-react";
 import styled from "styled-components";
+// ... (Tus otras importaciones de Contexts, WalletButton, t)
 
-// --- Importaciones TEMPORALMENTE comentadas ---
-// import { useTheme } from "@/contexts/ThemeContext";
-// import { useLanguage } from "@/contexts/LanguageContext";
-// import { WalletButton } from "@/components/WalletButton";
-// import { t } from "@/lib/i18n";
+// --- Definición de Styled Components ---
 
-// --- Definición de Styled Components (esto no cambia) ---
 const NavContainer = styled.nav`
+  /* ... (Tus estilos de NavContainer) ... */
   background-color: var(--color-azul-mar); 
   border-bottom: 1px solid var(--color-celeste);
   padding: 0 2rem;
-  height: 4.5rem;
+  height: 4.5rem; // 72px
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,19 +19,39 @@ const NavContainer = styled.nav`
   z-index: 50;
 `;
 
+// 2. El Logo (¡MODIFICADO OTRA VEZ!)
 const LogoLink = styled(NavLink)`
-  font-family: var(--fuente-titulos);
-  font-size: 1.75rem; 
-  font-weight: 700;
-  color: var(--color-blanco);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* <-- AÑADIDO: Espacio entre logo y texto */
   text-decoration: none;
-  transition: color 0.2s ease;
+  
+  /* Estilos para la imagen del logo */
+  img {
+    height: 2.5rem; /* 40px. Ajusta esta altura */
+    width: auto;
+    transition: opacity 0.2s ease;
+  }
 
-  &:hover {
+  /* --- AÑADIDO: Estilos para el texto --- */
+  span {
+    font-family: var(--fuente-titulos); /* ¡Cinzel! */
+    font-size: 1.75rem; 
+    font-weight: 700;
+    color: var(--color-blanco);
+    transition: color 0.2s ease;
+  }
+
+  /* Efecto hover */
+  &:hover img {
+    opacity: 0.85;
+  }
+  &:hover span {
     color: var(--color-celeste);
   }
 `;
 
+// ... (El resto de tus styled components: NavMenu, StyledNavLink, Controls, IconButton...)
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
@@ -43,7 +60,6 @@ const NavMenu = styled.div`
     display: none;
   }
 `;
-
 const StyledNavLink = styled(NavLink)`
   font-family: var(--fuente-subtitulos);
   font-size: 1rem;
@@ -53,25 +69,21 @@ const StyledNavLink = styled(NavLink)`
   padding: 0.5rem 1rem;
   border-radius: 6px;
   transition: all 0.2s ease-in-out;
-
   &:hover {
     opacity: 1;
     background-color: var(--color-azul-marino);
   }
-
   &.active {
     opacity: 1;
     background-color: var(--color-celeste);
     color: var(--color-blanco);
   }
 `;
-
 const Controls = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
 `;
-
 const IconButton = styled.button`
   background: transparent;
   border: none;
@@ -83,82 +95,70 @@ const IconButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
-
   &:hover {
     background-color: var(--color-azul-marino);
   }
 `;
 
-// --- Componente Navbar (Versión Simplificada) ---
+
+// --- Tu Componente Navbar (Versión Simplificada Temporal) ---
 
 export const Navbar = () => {
-    // --- Lógica de estado TEMPORALMENTE comentada ---
-    // const { theme, toggleTheme } = useTheme();
-    // const { lang, setLang } = useLanguage();
+  // ... (Tu lógica de theme, lang, etc.)
+  const theme = "light";
 
-    // Valores de ejemplo para que no falle:
-    const theme = "light";
-    // const lang = "es";
+  const navLinks = [
+    { path: "/", label: "Inicio" },
+    { path: "/enviar", label: "Enviar" },
+    { path: "/historial", label: "Historial" },
+    { path: "/retiro", label: "Puntos de Retiro" },
+    { path: "/empresas", label: "Empresas" },
+    { path: "/como-funciona", label: "Cómo funciona" },
+  ];
 
-    // Links con texto en lugar de la función t()
-    const navLinks = [
-        { path: "/", label: "Inicio" },
-        { path: "/enviar", label: "Enviar" },
-        { path: "/historial", label: "Historial" },
-        { path: "/retiro", label: "Puntos de Retiro" },
-        { path: "/empresas", label: "Empresas" },
-        { path: "/como-funciona", label: "Cómo funciona" },
-    ];
+  return (
+    <NavContainer>
+      {/* --- ¡CAMBIO AQUÍ! --- */}
+      <LogoLink to="/">
+        <img src="/images/logo.png" alt="Tlalix Logo" />
+        <span>Tlalix</span> {/* <-- Texto añadido de vuelta */}
+      </LogoLink>
+      {/* --------------------- */}
 
-    return (
-        <NavContainer>
-            <LogoLink to="/">
-                Tlalix
-            </LogoLink>
+      <NavMenu>
+        {navLinks.map((link) => (
+          <StyledNavLink
+            key={link.path}
+            to={link.path}
+            end={link.path === "/"} 
+          >
+            {link.label}
+          </StyledNavLink>
+        ))}
+      </NavMenu>
 
-            <NavMenu>
-                {navLinks.map((link) => (
-                    <StyledNavLink
-                        key={link.path}
-                        to={link.path}
-                        end={link.path === "/"}
-                    >
-                        {link.label}
-                    </StyledNavLink>
-                ))}
-            </NavMenu>
+      <Controls>
+        {/* Placeholder para WalletButton */}
+        <button style={{
+          backgroundColor: 'var(--color-azul-marino)', 
+          color: 'var(--color-blanco)',
+          border: '1px solid var(--color-celeste)',
+          padding: '0.5rem 1rem',
+          borderRadius: '6px',
+          fontFamily: 'var(--fuente-subtitulos)',
+          cursor: 'pointer'
+        }}>
+          Conectar Wallet
+        </button>
 
-            <Controls>
-                {/* El WalletButton está comentado por ahora */}
-                {/* <StyledWalletButton /> */}
+        <IconButton title="Toggle language">
+          <Globe className="h-5 w-5" />
+        </IconButton>
 
-                {/* Botón temporal de placeholder para Wallet */}
-                <button style={{
-                    backgroundColor: 'var(--color-azul-marino)',
-                    color: 'var(--color-blanco)',
-                    border: '1px solid var(--color-celeste)',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '6px',
-                    fontFamily: 'var(--fuente-subtitulos)',
-                    cursor: 'pointer'
-                }}>
-                    Conectar Wallet
-                </button>
-
-                <IconButton
-                    // onClick={() => setLang(lang === "es" ? "en" : "es")}
-                    title="Toggle language"
-                >
-                    <Globe className="h-5 w-5" />
-                </IconButton>
-
-                <IconButton
-                    // onClick={toggleTheme}
-                    title="Toggle theme"
-                >
-                    {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-                </IconButton>
-            </Controls>
-        </NavContainer>
-    );
+        <IconButton title="Toggle theme">
+          {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+        </IconButton>
+      </Controls>
+    </NavContainer>
+  );
 };
