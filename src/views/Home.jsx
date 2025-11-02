@@ -1,29 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// 1. Importa todos los componentes de tu página
+// 1. Importa todos los componentes HIJOS de la Home
 import HeroSection from '@/components/HeroSection';
 import WhyTlalix from '@/components/WhyTlalix';
-import CTASection from '@/components/CTASection'; // <-- ¡El nuevo!
+import CTASection from '@/components/CTASection';
 import XoloitzcuintleFooter from '@/components/XoloitzcuintleFooter';
+import Footer from '@/components/Footer';
 
+// Contenedor para la página de Home
 const HomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
+// --- El Componente Home ---
+
 function Home() {
   return (
     <HomePageContainer>
-      {/* 2. Este es el orden final de tu Home */}
+      {/* 2. Lista de todos los componentes de la Home, en orden */}
 
       <HeroSection />
 
       <WhyTlalix />
 
-      <CTASection /> {/* <-- ¡Añadido aquí! */}
+      <CTASection />
 
       <XoloitzcuintleFooter />
+
+      <Footer />
 
     </HomePageContainer>
   );

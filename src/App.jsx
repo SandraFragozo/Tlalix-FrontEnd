@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Navbar } from './components/Navbar';
 import PatternDivider from '@/components/PatternDivider';
 import Home from './views/Home';
+import Enviar from '@/views/Enviar';
+import Historial from '@/views/Historial';
 // ... (otras importaciones de vistas si las tienes)
 
 const AppContainer = styled.div`
@@ -76,6 +78,8 @@ function App() {
         <ContentWrapper>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/enviar" element={<Enviar />} />
+            <Route path="/historial" element={<Historial />} />
             {/* ... (tus otras rutas) ... */}
           </Routes>
         </ContentWrapper>
