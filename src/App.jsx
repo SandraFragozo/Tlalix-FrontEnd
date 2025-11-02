@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Navbar } from './components/Navbar'; 
-import PatternDivider from '@/components/PatternDivider'; // AÑADIDO: Importamos el divisor
+import { Navbar } from './components/Navbar';
+import PatternDivider from '@/components/PatternDivider';
 import Home from './views/Home';
 // ... (otras importaciones de vistas si las tienes)
 
@@ -19,7 +19,7 @@ const MainLayout = styled.div`
   display: flex;
   justify-content: center; /* Centra el contenido */
   position: relative;
-  overflow: hidden; /* Asegura que los patrones no se salgan */
+  overflow: hidden; /* Esto estaba en esa versión */
 `;
 
 const ContentWrapper = styled.div`
@@ -27,7 +27,7 @@ const ContentWrapper = styled.div`
   max-width: 1200px; /* Ancho máximo de tu contenido principal */
   display: flex;
   flex-direction: column;
-  padding: 0; /* Quitamos el padding de aquí, el Hero lo tiene */
+  padding: 0; /* <-- Este padding: 0 es el que causa el solapamiento superior */
   z-index: 10; /* Asegura que el contenido esté sobre los patrones */
 `;
 
@@ -45,19 +45,22 @@ const LeftPattern = styled.div`
   opacity: 0.6; /* Un poco de transparencia */
 `;
 
-// Patrón lateral derecho
+// Patrón lateral derecho (MODIFICADO COMO PEDISTE)
 const RightPattern = styled.div`
   position: absolute;
   top: 0;
   right: 0;
   width: 50px; /* Ancho del patrón */
   height: 100%;
-  background-image: url('/images/pattern-triangulos.png');
+  
+  /* --- CAMBIO AQUÍ --- */
+  background-image: url('/images/pattern-triangulos2.png'); /* <-- Usando tu nueva imagen */
+  /* transform: scaleX(-1); <-- ELIMINADO */
+  
   background-repeat: repeat-y;
   background-size: 100% auto;
   z-index: 5;
   opacity: 0.6;
-  transform: scaleX(-1); /* Invierte el contenedor y su fondo horizontalmente */
 `;
 
 
@@ -65,22 +68,18 @@ function App() {
   return (
     <AppContainer>
       <Navbar />
-      <PatternDivider /> {/* AÑADIDO: El divisor de rombos */}
-      
+      <PatternDivider />
+
       <MainLayout>
-        <LeftPattern /> {/* AÑADIDO: Patrón lateral izquierdo */}
+        {/* Los patrones están "clavados" a la ventana */}
+        <LeftPattern />
         <ContentWrapper>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* Rutas temporales */}
-            <Route path="/enviar" element={<h2>Página de Enviar</h2>} />
-            <Route path="/historial" element={<h2>Página de Historial</h2>} />
-            <Route path="/retiro" element={<h2>Página de Puntos de Retiro</h2>} />
-            <Route path="/empresas" element={<h2>Página de Empresas</h2>} />
-            <Route path="/como-funciona" element={<h2>Página de Cómo Funciona</h2>} />
+            {/* ... (tus otras rutas) ... */}
           </Routes>
         </ContentWrapper>
-        <RightPattern /> {/* AÑADIDO: Patrón lateral derecho */}
+        <RightPattern />
       </MainLayout>
     </AppContainer>
   );
